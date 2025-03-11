@@ -71,7 +71,7 @@ width: 300px;
 .mastHead{
     height:400px;
     background-position: center;
-    background-image: url("cover-image.webp");
+    background-image: url("Pork-Stir-Fry-with-Green-Beans.webp");
     background-repeat:no-repeat;
     /* opacity: 0.8;
     filter: brightness(40%); */
@@ -121,6 +121,91 @@ font-weight: bold;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
 }
+.ContainerImgs{
+    margin-left: 70px;
+    display: flex;
+    /* grid-template-columns: repeat(3 ,400px);
+    grid-template-rows: repeat(3 ,400px); 
+    column-gap:40px;
+    row-gap: 40px; */
+    flex-direction: row;
+   
+}
+
+.img{
+    width: 80%;
+    height: 100%;
+    object-position: center;
+    object-fit: cover;
+   
+}
+
+.smallImages{
+    display: grid;
+    grid-template-columns: repeat(2 ,200px);
+    grid-template-rows: repeat(2 ,200px);
+    column-gap:20px;
+    row-gap: 20px;
+    width: 100%;
+    height: 100%;
+}
+.item2{
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: cover;
+}
+.item3{
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: cover;
+}
+.item4{
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: cover;
+}
+
+.item5{
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: cover;
+}
+/* 
+.item2{
+    object-fit: cover;
+    width: 300px;
+    height: 270px;
+}
+.item3{
+    object-fit: cover;
+
+    width: 300px;
+    height: 270px;
+}
+.item4{
+    object-fit: cover;
+    width: 300px;
+    height: 270px;
+}
+.item5{
+    object-fit: cover;
+    width: 300px;
+    height: 270px;
+} */
+
+/* object-fit: cover;
+border-style: none;
+    border: 0 solid;
+    box-sizing: border-box;
+    
+    height: 572px; for one 
+    
+    vertical-align: middle; for sec
+            height: 270px;*/
    /* #a5c7e5 */
 /* .site-title{
     width: 700px;
