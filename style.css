@@ -1,0 +1,90 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.header{
+    /* background-color: #181A1B; */
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: sticky;
+    height: 70px;
+}
+
+.filter_fav_search{
+    padding-top: 10px;
+    margin-right: 70px ;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+#foodSearch{
+width: 300px;
+
+}
+
+#search{
+    width: 300px;
+    height: 40px;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    overflow: hidden;
+  
+ }
+#filter{
+    width: 30px;
+    height: 30px;
+   border: none;
+   background-color: whitesmoke;
+}
+
+#favorite{
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: whitesmoke;
+
+}
+.logo{
+    margin-left: 70px;
+    font-size: 40px;
+    font-weight : bold;
+    font-family: Verdana, sans-serif;
+}
+.tin{
+    color: #f2766f;
+}
+
+.main{
+    height:500px;
+    background-position: center;
+    background-image: url("Pork-Stir-Fry-with-Green-Beans.webp");
+    background-repeat:no-repeat;
+   background-size:  cover;;;
+  /* transform: rotate(180deg);
+     */
+}
+
+.title_mastHead{
+ text-align: center;
+ color: white;
+}
+
+.mastHead{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+/* .site-title{
+    width: 700px;
+    height: 400px;
+background-image: url("logo.svg");
+background-color: initial;
+background-repeat:no-repeat;
+} */
+
