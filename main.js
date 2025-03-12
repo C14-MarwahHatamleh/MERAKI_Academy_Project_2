@@ -178,37 +178,55 @@ const Recipes = {
     },
   ],
 };
-
+const modal = () => {
+  const myModal = $(`<div id="myModal" class="modal"></div>`);
+  main.append(myModal);
+  const modal_content = $(`<div class="modal-content"></div>`);
+  myModal.append(modal_content);
+  const card = $(`<div class="card"></div>`);
+  modal_content.append(card);
+  const imgCard = $(
+    `<img class="imgCard" src="Carbonara.webp" alt="Carbonara">`
+  );
+  card.append(imgCard);
+  const container = $(`<div class="container"></div>`);
+  card.append(container);
+  const titleOfRecipe = $(` <h4 class="titleOfRecipe"><b>Carbonara</b></h4>`);
+  const rate = $(`<p>Rate : 9/10</p>`);
+  const fav = $(
+    `<button class="fav" ><img src="heart-fill.svg" alt="Favorite" /></button>`
+  );
+  container.append(titleOfRecipe, rate, fav);
+};
 const FoodRecipesPage = () => {
-    const SiteTitle = $(`<div class="site-title"> </div>`);
-    header.append(SiteTitle);
-    const logo = $(
-      `<div class="logo"> Recipe<span class="tin">Tin</span>Eats </div>`
-    );
-    SiteTitle.append(logo);
-    const filter_fav_search = $(`<div class="filter_fav_search"> </div>`);
-    header.append(filter_fav_search);
-    const foodSearch = $(`<div id="foodSearch"></div>`);
-    const inputSearch = $(
-      `<input type="search" id="search" name="foodSearch" placeholder="   Search Recipes ...">`
-    );
-    foodSearch.append(inputSearch);
-    const filter = $(`<div class ="filter"> </div>`);
-    const ButtonFilter = $(
-      `<button id="filter"> <img src="filter.svg" alt="filter" /></button>`
-    );
-    filter.append(ButtonFilter);
-    const favorite = $(`<div class ="favorite">  </div>`);
-    const ButtonFavorite = $(
-      `<button id="favorite"> <img src="heart-fill.svg" alt="Favorite" /></button>`
-    );
-    favorite.append(ButtonFavorite);
-  
-  
-  ButtonFavorite.on("click" , function(){
-      FavoritePage();
-  })
-  
+  const SiteTitle = $(`<div class="site-title"> </div>`);
+  header.append(SiteTitle);
+  const logo = $(
+    `<div class="logo"> Recipe<span class="tin">Tin</span>Eats </div>`
+  );
+  SiteTitle.append(logo);
+  const filter_fav_search = $(`<div class="filter_fav_search"> </div>`);
+  header.append(filter_fav_search);
+  const foodSearch = $(`<div id="foodSearch"></div>`);
+  const inputSearch = $(
+    `<input type="search" id="search" name="foodSearch" placeholder="   Search Recipes ...">`
+  );
+  foodSearch.append(inputSearch);
+  const filter = $(`<div class ="filter"> </div>`);
+  const ButtonFilter = $(
+    `<button id="filter"> <img src="filter.svg" alt="filter" /></button>`
+  );
+  filter.append(ButtonFilter);
+  const favorite = $(`<div class ="favorite">  </div>`);
+  const ButtonFavorite = $(
+    `<button id="favorite"> <img src="heart-fill.svg" alt="Favorite" /></button>`
+  );
+  favorite.append(ButtonFavorite);
+
+  ButtonFavorite.on("click", function () {
+    FavoritePage();
+  });
+
   filter_fav_search.append(foodSearch, filter, favorite);
   const mastHead = $(`<div class="mastHead"> </div>`);
   main.append(mastHead);
@@ -433,12 +451,49 @@ const FoodRecipesPage = () => {
     `<button class="fav" ><img src="heart-fill.svg" alt="Favorite" /></button>`
   );
   container6.append(titleOfRecipe6, rate6, fav6);
-  const SeeMore = $(`<div class ="SeeMore">`);
-  main.append(SeeMore);
-  const ButtonSeeMore = $(`<button class="ButtonSeeMore">See More</button>`);
-  SeeMore.append(ButtonSeeMore);
+//   const SeeMore = $(`<div class ="SeeMore">`);
+//   main.append(SeeMore);
+//   const ButtonSeeMore = $(`<button class="ButtonSeeMore">See More</button>`);
+//   SeeMore.append(ButtonSeeMore);
 
- 
+
+
+
+
+
+
+
+
+
+
+
+  const myModal = $(`<div id="myModal" class="modal"></div>`);
+  main.append(myModal);
+  const modal_content = $(`<div class="modal-content"></div>`);
+  myModal.append(modal_content);
+  const cardModal = $(`<div class="card"></div>`);
+  modal_content.append(cardModal);
+  const imgCardModal = $(
+    `<img class="imgCard" src="Carbonara.webp" alt="Carbonara">`
+  );
+  cardModal.append(imgCardModal);
+  const containerModal = $(`<div class="container"></div>`);
+  cardModal.append(containerModal);
+  const titleOfRecipeModal = $(` <h4 class="titleOfRecipe"><b>Carbonara</b></h4>`);
+  const rateModal = $(`<p>Rate : 9/10</p>`);
+  containerModal.append(titleOfRecipeModal, rateModal);
+
+
+
+
+
+
+
+
+
+
+
+
   //  $('.fav').each(function() {
   // $(this).click(function(){
   // console.log($(this).index())
@@ -460,16 +515,15 @@ const FoodRecipesPage = () => {
   //         console.log($(this).index());
   //     })
   // })
+  $(".titleOfRecipe").on("click", function (event) {
 
-    // $(".card").each(function () {
-    //   $(this).click(function () {
-    //     const img = $(this).find("img").attr("src");
-    //     console.log(img);
-    //     const DesOfCard = $(this).text().split(":");
-    //     console.log(DesOfCard[0]);
-    //     FoodRecipeDetails(DesOfCard[0], img);
-    //   });
-    // });
+    const img = $(this).parent().parent().find("img").attr("src");
+    console.log(img);
+    const DesOfCard = $(this).text().split(":");
+    console.log(DesOfCard[0]);
+    FoodRecipeDetails(DesOfCard[0], img);
+  }); 
+
 
   $(`.fav`).on("click", function () {
     const img = $(this).parent().parent().find("img").attr("src");
@@ -477,29 +531,27 @@ const FoodRecipesPage = () => {
     favArr.push({ img: img, title: details[0], rate: details[1] });
   });
 
+  inputSearch.on("click", function () {
+    if (inputSearch.val() == "") {
+      console.log("the input is empty");
+    } else {
+      const title = inputSearch.val();
+      console.log(title);
+      let cate = ["Spaghetti", "Salads", "chicken"];
 
- inputSearch.on("change" , function(){
-    if(inputSearch.val() ==""){
-        console.log("the input is empty")
-    }else{
-    const title = inputSearch.val();
-    console.log(title)
-    let cate = ["Spaghetti" ,"Salads" , "chicken" ]
-    for(let i = 0 ; i < Recipes["categories"].length ;i++){
-        for(let j = 0 ; j<Recipes["categories"][i][cate[i]]["plates"].length; j++){
-        if(Recipes["categories"][i][cate[i]]["plates"][j]["title"] ===title )
-        {
-        
+      for (let i = 0; i < Recipes["categories"].length; i++) {
+    for ( let j = 0; j < Recipes["categories"][i][cate[i]]["plates"].length; j++
+        ) {  if ( Recipes["categories"][i][cate[i]]["plates"][j]["title"] === title ) { 
             console.log("yes")
-        } else {
+            
+          } else {
             console.log("no")
+          }
+          // console.log(Recipes["categories"][i][cate[i]]["plates"][j]["title"])
         }
-    // console.log(Recipes["categories"][i][cate[i]]["plates"][j]["title"])
-      
-        }
+      }
     }
-}
- });
+  });
   //   $(".fav").each(function () {
   //     $(this).click(function (e) {
   //       const img = $(this).parent().parent().find("img").attr("src");
@@ -527,25 +579,31 @@ const FoodRecipesPage = () => {
 FoodRecipesPage();
 
 const FavoritePage = () => {
-    body.html("")
+  body.html("");
   const urFavorite = $(`<div class="urFavorite"></div>`);
   body.append(urFavorite);
   const h3 = $(` <div><h3>Your Favorite</h3></div>`);
   const cardFav = $(`<div class ="cards"></div>`);
   urFavorite.append(h3, cardFav);
-  if(favArr.length !== 0)
-  {console.log(favArr)
-    favArr.forEach(function(e , index){
-        console.log(e)
-        const card = $(` <div class="card">`);
-        cardFav.append(card)
-        const imgCard = $(`<img class="imgCard" src="${e["img"]}" alt="${e["title"]}">`);
-        card.append(imgCard);
-        const container = $(`<div class="container"></div>`);
-        card.append(container);
-        const titleOfRecipe = $(`<h4 class="titleOfRecipe"><b>${e["title"]}</b></h4>`)
-        const rate = $(`<p>Rate ${e["rate"]}</p> <button class="fav" ><img src="heart-fill.svg" alt="Favorite" /></button>`)
-        container.append(titleOfRecipe,rate)
+  if (favArr.length !== 0) {
+    console.log(favArr);
+    favArr.forEach(function (e, index) {
+      console.log(e);
+      const card = $(` <div class="card">`);
+      cardFav.append(card);
+      const imgCard = $(
+        `<img class="imgCard" src="${e["img"]}" alt="${e["title"]}">`
+      );
+      card.append(imgCard);
+      const container = $(`<div class="container"></div>`);
+      card.append(container);
+      const titleOfRecipe = $(
+        `<h4 class="titleOfRecipe"><b>${e["title"]}</b></h4>`
+      );
+      const rate = $(
+        `<p>Rate ${e["rate"]}</p> <button class="fav" ><img src="heart-fill.svg" alt="Favorite" /></button>`
+      );
+      container.append(titleOfRecipe, rate);
     });
   }
 };
@@ -563,49 +621,46 @@ const FavoritePage = () => {
 
 </div></div> */
 const CategoryPage = () => {
- body.html("")
- const header2 = $(`<header class="header"></header>`);
- body.append(header2)
- const SiteTitle = $(`<div class="site-title"> </div>`);
- header2.append(SiteTitle);
- const logo = $(
-   `<div class="logo"> Recipe<span class="tin">Tin</span>Eats </div>`
- );
- SiteTitle.append(logo);
- const filter_fav_search = $(`<div class="filter_fav_search"> </div>`);
- header2.append(filter_fav_search);
- const foodSearch = $(`<div id="foodSearch"></div>`);
- const inputSearch = $(
-   `<input type="search" id="search" name="foodSearch" placeholder="   Search Recipes ...">`
- );
- foodSearch.append(inputSearch);
- const filter = $(`<div class ="filter"> </div>`);
- const ButtonFilter = $(
-   `<button id="filter"> <img src="filter.svg" alt="filter" /></button>`
- );
- filter.append(ButtonFilter);
- const favorite = $(`<div class ="favorite">  </div>`);
- const ButtonFavorite = $(
-   `<button id="favorite"> <img src="heart-fill.svg" alt="Favorite" /></button>`
- );
- favorite.append(ButtonFavorite);
+  body.html("");
+  const header2 = $(`<header class="header"></header>`);
+  body.append(header2);
+  const SiteTitle = $(`<div class="site-title"> </div>`);
+  header2.append(SiteTitle);
+  const logo = $(
+    `<div class="logo"> Recipe<span class="tin">Tin</span>Eats </div>`
+  );
+  SiteTitle.append(logo);
+  const filter_fav_search = $(`<div class="filter_fav_search"> </div>`);
+  header2.append(filter_fav_search);
+  const foodSearch = $(`<div id="foodSearch"></div>`);
+  const inputSearch = $(
+    `<input type="search" id="search" name="foodSearch" placeholder="   Search Recipes ...">`
+  );
+  foodSearch.append(inputSearch);
+  const filter = $(`<div class ="filter"> </div>`);
+  const ButtonFilter = $(
+    `<button id="filter"> <img src="filter.svg" alt="filter" /></button>`
+  );
+  filter.append(ButtonFilter);
+  const favorite = $(`<div class ="favorite">  </div>`);
+  const ButtonFavorite = $(
+    `<button id="favorite"> <img src="heart-fill.svg" alt="Favorite" /></button>`
+  );
+  favorite.append(ButtonFavorite);
 
+  ButtonFavorite.on("click", function () {
+    FavoritePage();
+  });
 
-ButtonFavorite.on("click" , function(){
-   FavoritePage();
-})
-
- filter_fav_search.append(foodSearch, filter, favorite);
- 
-
-  
+  filter_fav_search.append(foodSearch, filter, favorite);
   const filterCategories = $(`<div class = "filterCategories"></div>`);
   body.append(filterCategories);
-  const headerfilter = $(`<h3>Filter by Categories</h3>`);
-  const btn1 = $(`<button class ="Buttonall">All Categories</button>`);
-  const btn2 = $(`<button class="ButtonSpaghetti">Spaghetti</button>`);
-  const btn3 = $(`<button class ="ButtonSalads">Salads</button>`);
-  filterCategories.append(headerfilter, btn1, btn2, btn3);
+  const btn1 = $(`<button class ="Buttonall buttonfilter">All Categories</button>`);
+  const btn2 = $(`<button class="ButtonSpaghetti buttonfilter">Spaghetti</button>`);
+  const btn3 = $(`<button class ="ButtonSalads buttonfilter">Salads</button>`);
+  const btn4 = $(`<button class ="ButtonChicken buttonfilter">chicken</button>`);
+
+  filterCategories.append (btn1, btn2, btn3,btn4);
 
   const categories = $(` <div class="categories"></div>`);
   body.append(categories);
@@ -699,28 +754,68 @@ ButtonFavorite.on("click" , function(){
   container1.append(titleOfRecipe1, rate1, fav1);
 
   /////////////////////////////////////////////////
+  const sectionThree = $(`<div class="sectionThree"></div>`);
+  categories.append(sectionThree);
+  const titleCategoryThree = $(
+    `<div class="titleCategory chickenCategory"></div>`
+  );
+  sectionThree.append(titleCategoryThree);
+  const headerthree = $(`<h2>Chicken</h2>`);
+  titleCategoryThree.append(headerthree);
+  const cardsthree = $(`<div class="cards"><div>`);
+  sectionThree.append(cardsthree);
+
+  const cardone = $(`<div class="card Chicken"></div>`);
+  cardsthree.append(cardone);
+  const imgCardone = $(
+    ` <img class="imgCard" src="Chicken-in-Satay-Sauce.webp"alt="Charred Red Cabbage and Carrot Salad">`
+  );
+  cardone.append(imgCardone);
+  const containerone = $(`<div class="container"></div>`);
+  cardone.append(containerone);
+  const titleOfRecipeone = $(
+    ` <h4 class="titleOfRecipe"><b>Chicken in Satay Sauce</b></h4>`
+  );
+  const rateone = $(`<p>Rate : 9/10</p>`);
+  const favone = $(
+    `<button class="fav" ><img src="heart-fill.svg" alt="Favorite" /></button>`
+  );
+  containerone.append(titleOfRecipeone, rateone, favone);
 
   ////////////////////////////////////////////////
 
-
   $(`.fav`).on("click", function () {
     const img = $(this).parent().parent().find("img").attr("src");
-    console.log(img)
+    console.log(img);
     const details = $(this).parent().parent().text().split("Rate : ");
-    console.log(details)
+    console.log(details);
     favArr.push({ img: img, title: details[0], rate: details[1] });
   });
+
+  $(".titleOfRecipe").on("click", function (event) {
+
+    const img = $(this).parent().parent().find("img").attr("src");
+    console.log(img);
+    const DesOfCard = $(this).text().split(":");
+    console.log(DesOfCard[0]);
+    FoodRecipeDetails(DesOfCard[0], img);
+  }); 
+
   btn1.on("click", function () {
     $(`.SpaghettiCategory`).show();
     $(`.SaladsCategory`).show();
     $(`.Salads`).show();
     $(`.Spaghetti`).show();
+    $(`.chickenCategory`).show();
+    $(`.Chicken`).show();
   });
   btn2.on("click", function () {
     $(`.SpaghettiCategory`).show();
     $(`.Spaghetti`).show();
     $(`.SaladsCategory`).hide();
     $(`.Salads`).hide();
+    $(`.chickenCategory`).hide();
+    $(`.Chicken`).hide();
   });
 
   btn3.on("click", function () {
@@ -728,6 +823,17 @@ ButtonFavorite.on("click" , function(){
     $(`.Salads`).show();
     $(`.SpaghettiCategory`).hide();
     $(`.Spaghetti`).hide();
+    $(`.chickenCategory`).hide();
+    $(`.Chicken`).hide();
+  });
+
+  btn4.on("click", function () {
+    $(`.SaladsCategory`).hide();
+    $(`.Salads`).hide();
+    $(`.SpaghettiCategory`).hide();
+    $(`.Spaghetti`).hide();
+    $(`.chickenCategory`).show();
+    $(`.Chicken`).show();
   });
 
   //////////////////////////////////////////
