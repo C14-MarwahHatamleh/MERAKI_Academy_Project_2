@@ -18,49 +18,49 @@ const Recipes = {
       Spaghetti: {
         plates: [
           {
-            title: "dvd",
+            title: "Beef chow mein",
             Image: "dsvd",
             Description: "vdv",
             Rate: "dvds",
           },
           {
-            title: "dvd",
+            title: "Spaghetti alla Puttanesca",
             Image: "dsvd",
             Description: "vdv",
             Rate: "dvds",
           },
           {
-            title: "dvd",
+            title: "Spicy Chilli Prawn Pasta",
             Image: "dsvd",
             Description: "vdv",
             Rate: "dvds",
           },
           {
-            title: "dvd",
+            title: "Penne all’Arrabbiata",
             Image: "dsvd",
             Description: "vdv",
             Rate: "dvds",
           },
           {
-            title: "dvd",
+            title: "Carbonara",
             Image: "dsvd",
             Description: "vdv",
             Rate: "dvds",
           },
           {
-            title: "dvd",
+            title: "Spaghetti Bolognese",
             Image: "dsvd",
             Description: "vdv",
             Rate: "dvds",
           },
           {
-            title: "dvd",
+            title: "Creamy Mushroom Pasta",
             Image: "dsvd",
             Description: "vdv",
             Rate: "dvds",
           },
           {
-            title: "dvd",
+            title: "Lasagna!",
             Image: "dsvd",
             Description: "vdv",
             Rate: "dvds",
@@ -72,49 +72,49 @@ const Recipes = {
       Salads: {
         plates: [
           {
-            title: "dvd",
+            title: "Crunchy chicken taco fingers",
             Image: "dsvd",
             Description: "vdv",
             Rate: "dvds",
           },
           {
-            title: "dvd",
+            title: "Chicken Fajitas",
             Image: "dsvd",
             Description: "vdv",
             Rate: "dvds",
           },
           {
-            title: "dvd",
+            title: "Chicken Curry",
             Image: "dsvd",
             Description: "vdv",
             Rate: "dvds",
           },
           {
-            title: "dvd",
+            title: "Chicken Chinese Noodle Soup",
             Image: "dsvd",
             Description: "vdv",
             Rate: "dvds",
           },
           {
-            title: "dvd",
+            title: "Chicken Stew",
             Image: "dsvd",
             Description: "vdv",
             Rate: "dvds",
           },
           {
-            title: "dvd",
+            title: "Satay Chicken Stir Fry",
             Image: "dsvd",
             Description: "vdv",
             Rate: "dvds",
           },
           {
-            title: "dvd",
+            title: "Sticky Chicken Wings",
             Image: "dsvd",
             Description: "vdv",
             Rate: "dvds",
           },
           {
-            title: "dvd",
+            title: "Chicken Kiev",
             Image: "dsvd",
             Description: "vdv",
             Rate: "dvds",
@@ -124,51 +124,51 @@ const Recipes = {
     },
     {
       chicken: {
-        questions: [
+        plates: [
           {
-            title: "dvd",
+            title: "Cornbread Salad",
             Image: "dsvd",
             Description: "vdv",
             Rate: "dvds",
           },
           {
-            title: "dvd",
+            title: "Green Goddess Salad",
             Image: "dsvd",
             Description: "vdv",
             Rate: "dvds",
           },
           {
-            title: "dvd",
+            title: "California Spaghetti Salad",
             Image: "dsvd",
             Description: "vdv",
             Rate: "dvds",
           },
           {
-            title: "dvd",
+            title: "Waldorf Salad",
             Image: "dsvd",
             Description: "vdv",
             Rate: "dvds",
           },
           {
-            title: "dvd",
+            title: "Retro Salad",
             Image: "dsvd",
             Description: "vdv",
             Rate: "dvds",
           },
           {
-            title: "dvd",
+            title: "Charred Red Cabbage and Carrot Salad",
             Image: "dsvd",
             Description: "vdv",
             Rate: "dvds",
           },
           {
-            title: "dvd",
+            title: "Pecan Chicken Salad",
             Image: "dsvd",
             Description: "vdv",
             Rate: "dvds",
           },
           {
-            title: "dvd",
+            title: "Greek Pasta Salad",
             Image: "dsvd",
             Description: "vdv",
             Rate: "dvds",
@@ -477,14 +477,27 @@ const FoodRecipesPage = () => {
     favArr.push({ img: img, title: details[0], rate: details[1] });
   });
 
- // onmouseenter
- inputSearch.on("click" , function(){
+
+ inputSearch.on("change" , function(){
     if(inputSearch.val() ==""){
         console.log("the input is empty")
     }else{
     const title = inputSearch.val();
     console.log(title)
-
+    let cate = ["Spaghetti" ,"Salads" , "chicken" ]
+    for(let i = 0 ; i < Recipes["categories"].length ;i++){
+        for(let j = 0 ; j<Recipes["categories"][i][cate[i]]["plates"].length; j++){
+        if(Recipes["categories"][i][cate[i]]["plates"][j]["title"] ===title )
+        {
+        
+            console.log("yes")
+        } else {
+            console.log("no")
+        }
+    // console.log(Recipes["categories"][i][cate[i]]["plates"][j]["title"])
+      
+        }
+    }
 }
  });
   //   $(".fav").each(function () {
