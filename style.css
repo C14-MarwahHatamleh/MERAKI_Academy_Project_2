@@ -143,6 +143,9 @@ font-weight: bold;
    
 }
 
+.buttonOfContainerImgs{
+    border: none;
+}
 .smallImages{
     display: grid;
     grid-template-columns: repeat(2 ,250px);
@@ -151,13 +154,13 @@ font-weight: bold;
     row-gap: 20px;
 
 }
-.item2{
+.imgSmall{
     width: 100%;
     height: 100%;
     object-position: center;
     object-fit: cover;
 }
-.item3{
+/* .item3{
     width: 100%;
     height: 100%;
     object-position: center;
@@ -175,7 +178,7 @@ font-weight: bold;
     height: 100%;
     object-position: center;
     object-fit: cover;
-}
+} */
 
 .titleBigImg{
     position: relative;
@@ -269,6 +272,44 @@ font-weight: bold;
     width: 30px;
     height: 30px;
     border: none;
+}
+
+.categories{
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+}
+
+.filterCategories{
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sectionOne{
+    display: flex;
+    flex-direction: column;
+}
+.cards{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.sectionTwo{
+    display: flex;
+    flex-direction: column;
+ 
+}
+
+.FoodRecipeDetails{
+    display: flex;
+    flex-direction: column;
+}
+
+.urFavorite{
+    display: flex;
+    flex-direction: column;
 }
 /* 
 .item2{
