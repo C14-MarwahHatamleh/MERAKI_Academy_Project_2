@@ -5,7 +5,7 @@ const body = $(`body`);
 body.append(header, main, footer);
 
 let favArr = [];
-
+let flag = "light";
 const R = {
   categories: [
     {
@@ -250,7 +250,7 @@ const Recipes = {
               "There are various colourful stories explaining how this dish came to be, and how Puttanesca pasta got its name. “Puttanesca” roughly translates to “working girls” in Italian (that’s a politically correct term I’m using there!) One tale tells how this dish was invented in the brothels of Naples so the smells wafting from the kitchen would entice potential … errr, clients. Another story claims this pasta was a quick and simple dish ladies of the Neapolitan night could throw together in a hurry in amongst their busy schedules.Does this kind of talk on a G-rated food blog make you blush? 😉",
               "Whatever the origins, today this is considered a classic and staple Italian pasta recipe. It’s budget-friendly, easy and quick to make, yet delicious enough to woo family and friends (or indeed, “paying customers” … 😉)",
             ],
-            Rate: "dvds",
+            Rate: "8.6/10",
           },
           {
             title: "Spicy Chilli Prawn Pasta",
@@ -532,7 +532,7 @@ const FoodRecipesPage = () => {
  
   const label = $(`<label class="switch"></label>`)
   switchBtn.append(label)
-  const input = $(` <input type="checkbox">`)
+  const input = $(` <input id ="switchLight" type="checkbox"> `)
   const span = $(`<span class="slider"></span>`);
   label.append(input ,span )
 //   const ButtonFilter = $(
@@ -548,6 +548,31 @@ const FoodRecipesPage = () => {
   ButtonFavorite.on("click", function () {
     FavoritePage();
   });
+ 
+input.on("click" , function(){
+    if((this).checked){
+        flag = "Dark";
+        body.css({backgroundColor: "#000000", color: "#ffffff" })
+        $(`.card`).css({backgroundColor: "#000000", color: "#ffffff" })
+        $('.card').find(`.fav`).find(`img`).attr( 'src','heart.svg');
+
+        $(`.fav`).css({backgroundColor: "#ffffff", })
+        $(`header`).css({backgroundColor: "#000000", })
+        $(`footer`).css({backgroundColor: "#ffffff", color: "#000000"})
+
+    }
+    else {
+        flag = "light";
+        body.css({backgroundColor: "#ffffff", color: "#000000" })
+        $(`.card`).css({backgroundColor: "#ffffff", color: "#000000" })
+        $('.card').find(`.fav`).find(`img`).attr( 'src','heart-fill.svg');
+        $(`.fav`).css( {backgroundColor: "rgb(250, 250, 250)"});
+        $(`header`).css({backgroundColor: "#ffffff" })
+    }
+
+})
+
+
 
   switch_fav_search.append(foodSearch, switchBtn, favorite);
   const mastHead = $(`<div class="mastHead"> </div>`);
@@ -651,16 +676,20 @@ for (let i = 0 ;i<dinnerSuggestions["categories"][0]["Suggestions"]["plates"].le
   card.append(imgCard);
   const container = $(`<div class="container"></div>`);
   card.append(container);
+  const divTitleOfRecipe = $(`<div class = "divTitleOfRecipe"></div>`)
   const titleOfRecipe = $(
     `<h4 class="titleOfRecipe"><b>${dinnerSuggestions["categories"][0]["Suggestions"]["plates"][i]["title"]}</b></h4>`
   );
-  const rate = $(`<p>Rate : ${dinnerSuggestions["categories"][0]["Suggestions"]["plates"][i]["Rate"]}</p>`);
+  divTitleOfRecipe.append(titleOfRecipe)
+  const DivOfRate = $(`<div class ="RateFav"></div>`)
+  const rate = $(`<p class = "RateText">Rate : ${dinnerSuggestions["categories"][0]["Suggestions"]["plates"][i]["Rate"]}</p>`);
 //   const divOfFav = $(`<div class ="divOfFav"> </div>`)
 
   const fav = $(
     `<button class="fav" ><img src="heart-fill.svg" alt="Favorite" /></button>`
   );
-  container.append(titleOfRecipe , rate , fav);
+  DivOfRate.append(rate , fav)
+  container.append(divTitleOfRecipe , DivOfRate);
 }
 
 
@@ -685,14 +714,18 @@ for (let i = 0 ;i<quickDinner["categories"][0]["Suggestions"]["plates"].length ;
   card.append(imgCard);
   const container = $(`<div class="container"></div>`);
   card.append(container);
+  const divTitleOfRecipe = $(`<div class = "divTitleOfRecipe"></div>`)
   const titleOfRecipe = $(
     ` <h4 class="titleOfRecipe"><b>${quickDinner["categories"][0]["Suggestions"]["plates"][i]["title"]}</b></h4>`
   );
-  const rate = $(`<p>Rate : ${quickDinner["categories"][0]["Suggestions"]["plates"][i]["Rate"]}</p>`);
+  divTitleOfRecipe.append(titleOfRecipe)
+  const DivOfRate = $(`<div class ="RateFav"></div>`)
+  const rate = $(`<p class = "RateText">Rate : ${quickDinner["categories"][0]["Suggestions"]["plates"][i]["Rate"]}</p>`);
   const fav = $(
     `<button class="fav" ><img src="heart-fill.svg" alt="Favorite" /></button>`
   );
-  container.append(titleOfRecipe , rate , fav);
+  DivOfRate.append(rate ,fav)
+  container.append(divTitleOfRecipe , DivOfRate);
 }
 
 
@@ -702,7 +735,7 @@ for (let i = 0 ;i<quickDinner["categories"][0]["Suggestions"]["plates"].length ;
     SeeMore.append(ButtonSeeMore);
 
   $(".titleOfRecipe").on("click", function (event) {
-    const img = $(this).parent().parent().find("img").attr("src");
+    const img = $(this).parent().parent().parent().find("img").attr("src");
     console.log($(this).parent().parent().parent());
     const DesOfCard = $(this).text().split(":");
     console.log(DesOfCard[0]);
@@ -710,7 +743,7 @@ for (let i = 0 ;i<quickDinner["categories"][0]["Suggestions"]["plates"].length ;
   });
 
   $(`.fav`).on("click", function () {
-    const img = $(this).parent().parent().find("img").attr("src");
+    const img = $(this).parent().parent().parent().find("img").attr("src");
     console.log(img)
     const details = $(this).parent().parent().text().split("Rate :");
     favArr.push({ img: img, title: details[0], rate: details[1] });
@@ -764,6 +797,25 @@ for (let i = 0 ;i<quickDinner["categories"][0]["Suggestions"]["plates"].length ;
   SeeMoreButton.on("click", function () {
     CategoryPage();
   });
+
+  const footerSubscribeContainer = $(`<div class="footer-subscribe--container"></div>`)
+  footer.append(footerSubscribeContainer);
+  const footerSubscribeText = $(`<div class="footer-subscribe--text"></div>`)
+  footerSubscribeContainer.append(footerSubscribeText);
+  const headerThree = $(`<h3> Never miss a recipe!</h3>`)
+  const paraOfFooter = $(`<p> Subscribe to my newsletter and receive 3 FREE ebooks!</p>`)
+  footerSubscribeText.append(headerThree , paraOfFooter)
+  const buttonLogin = $(`<button href="#profile-subscribe-popup" class="profile-login-popup"></button>`)
+  footerSubscribeContainer.append(buttonLogin);
+  const spanOfFooter = $(`<span>Login</span>`)
+  buttonLogin.append(spanOfFooter);
+ const footerInfo = $(`<div class= "footer-info"></div>`)
+ footerSubscribeContainer.append(footerInfo);
+ const spanOne = $(` <span>© RecipeTin Eats 2025</span>`)
+ const spanTwo = $(`<span>Privacy Policy &amp; Terms</span>`)
+ const spanThree = $(` <span> Site Credits</span>`)
+ const spanFour = $(`<span> All Rights Reserved</span>`)
+ footerInfo.append(spanOne ,spanTwo,spanThree ,spanFour);
 };
 
 FoodRecipesPage();
@@ -772,14 +824,29 @@ const FavoritePage = () => {
   body.html("");
   const urFavorite = $(`<div class="urFavorite"></div>`);
   body.append(urFavorite);
-  const h3 = $(` <div><h3>Your Favorite</h3></div>`);
+  const h3 = $(` <div class = "favHeader"><h3 class ="favHeadertext">Your Favorite :</h3></div>`);
   const cardFav = $(`<div class ="cards"></div>`);
   urFavorite.append(h3, cardFav);
   if (favArr.length !== 0) {
+
+//     <div class="urFavorite">
+//     <div>
+//         <h3>Your Favorite</h3>
+//     </div>
+//     <div class="cards">
+//         <div class="card"><img class="imgCard" src="Carbonara.webp" alt="Carbonara">
+//             <div class="container">
+//                 <div><h4 class="titleOfRecipe"><b>Carbonara</b></h4></div>
+//                 <div class ="RateFav"><p>Rate 8.5/10</p> <button class="fav"><img src="heart-fill.svg" alt="Favorite"></button></div>
+//                 <div class ="removeBtn"><button class ="remove" type="button">Remove</button></div>
+//             </div>
+//         </div>
+//     </div>
+// </div>
     console.log(favArr);
     favArr.forEach(function (e, index) {
       console.log(e);
-      const card = $(` <div class="card">`);
+      const card = $(` <div class="card"></div>`);
       cardFav.append(card);
       const imgCard = $(
         `<img class="imgCard" src="${e["img"]}" alt="${e["title"]}">`
@@ -787,21 +854,38 @@ const FavoritePage = () => {
       card.append(imgCard);
       const container = $(`<div class="container"></div>`);
       card.append(container);
+      const divTitleOfRecipe = $(`<div class = "divTitleOfRecipe"></div>`)
       const titleOfRecipe = $(
         `<h4 class="titleOfRecipe"><b>${e["title"]}</b></h4>`
       );
+      divTitleOfRecipe.append(titleOfRecipe)
+      const DivOfRate = $(`<div class ="RateFav"></div>`)
       const rate = $(
-        `<p>Rate ${e["rate"]}</p> <button class="fav" ><img src="heart-fill.svg" alt="Favorite" /></button>`
+        `<p class ="RateText">Rate ${e["rate"]}</p>`
       );
+      const buttonFav = $(`<button class="fav" ><img src="heart-fill.svg" alt="Favorite" /></button>`)
+      DivOfRate.append(rate , buttonFav)
+      const removeDiv = $(`<div class ="removeBtn"></div>`)
+
       const removeBtn = $(
-        `<button type="button" class="removeBtn">Remove</button>`
+        `<button type="button" class="remove">Remove</button>`
       );
+      removeDiv.append(removeBtn)
       removeBtn.on("click", function () {
-        $(this).parent().parent().remove();
+        $(this).parent().parent().parent().remove();
       });
-      container.append(titleOfRecipe, rate, removeBtn);
+      container.append(divTitleOfRecipe, DivOfRate, removeDiv);
     });
   }
+
+  if(flag === "Dark"){
+    body.css({backgroundColor: "#000000", color: "#ffffff" })
+    $(`.card`).css({backgroundColor: "#000000", color: "#ffffff" })
+    $('.card').find(`.fav`).find(`img`).attr( 'src','heart.svg');
+
+    $(`.fav`).css({backgroundColor: "#ffffff", })
+    $(`header`).css({backgroundColor: "#000000", })
+ }
 };
 
 /* <div class="urFavorite">
@@ -833,7 +917,7 @@ const CategoryPage = () => {
     `<input type="search" id="search" name="foodSearch" placeholder="   Search Recipes ...">`
   );
   foodSearch.append(inputSearch);
-  const filter = $(`<div class ="filter"> </div>`);
+  const filter = $(`<div class ="filter" > </div>`);
   const ButtonFilter = $(
     `<button id="filter"> <img src="filter.svg" alt="filter" /></button>`
   );
@@ -852,6 +936,9 @@ const CategoryPage = () => {
   const filterCategories = $(`<div class = "filterCategories"></div>`);
   body.append(filterCategories);
   ButtonFilter.on("click" , function(){
+   
+     //$(this).attr('disabled')
+      $(this).prop("disabled", true)
     const divOfPara = $(`<div class="para"></div>`)
     filterCategories.append(divOfPara);
     const p = $(`<p class ="FilterByCategory">Filter By Category :</p>`)
@@ -877,6 +964,7 @@ const CategoryPage = () => {
         $(`.Spaghetti`).show();
         $(`.chickenCategory`).show();
         $(`.Chicken`).show();
+        
       });
       btn2.on("click", function () {
         $(`.SpaghettiCategory`).show();
@@ -904,7 +992,8 @@ const CategoryPage = () => {
         $(`.chickenCategory`).show();
         $(`.Chicken`).show();
       });
-    
+
+
   })
  
 
@@ -928,12 +1017,18 @@ const CategoryPage = () => {
       cardOne.append(imgCardOne);
       const containerOne = $(`<div class="container"></div>`);
       cardOne.append(containerOne);
-      const titleOfRecipeOne = $(` <h4 class="titleOfRecipe"><b>${Recipes["categories"][0]["Spaghetti"]["plates"][i]["title"]}</b></h4>`);
-      const rateObe = $(`<p>Rate : ${Recipes["categories"][0]["Spaghetti"]["plates"][i]["Rate"]}</p>`);
+      const divTitleOfRecipe = $(`<div class = "divTitleOfRecipe"></div>`)
+      const titleOfRecipe = $(
+        `<h4 class="titleOfRecipe"><b>${Recipes["categories"][0]["Spaghetti"]["plates"][i]["title"]}</b></h4>`
+      );
+      divTitleOfRecipe.append(titleOfRecipe);
+      const DivOfRate = $(`<div class ="RateFav"></div>`)
+      const rateOne = $(`<p class = "RateText">Rate : ${Recipes["categories"][0]["Spaghetti"]["plates"][i]["Rate"]}</p>`);
       const favOne = $(
         `<button class="fav" ><img src="heart-fill.svg" alt="Favorite" /></button>`
       );
-      containerOne.append(titleOfRecipeOne, rateObe, favOne);
+      DivOfRate.append(rateOne , favOne)
+      containerOne.append(divTitleOfRecipe, DivOfRate);
   }
   
 
@@ -957,12 +1052,17 @@ const CategoryPage = () => {
       cardOne.append(imgCardOne);
       const containerOne = $(`<div class="container"></div>`);
       cardOne.append(containerOne);
+      const divTitleOfRecipe = $(`<div class = "divTitleOfRecipe"></div>`)
       const titleOfRecipeOne = $(` <h4 class="titleOfRecipe"><b>${Recipes["categories"][2]["Salads"]["plates"][i]["title"]}</b></h4>`);
-      const rateObe = $(`<p>Rate : ${Recipes["categories"][2]["Salads"]["plates"][i]["Rate"]}</p>`);
+      const DivOfRate = $(`<div class ="RateFav"></div>`)
+      divTitleOfRecipe.append(titleOfRecipeOne)
+      const rateOne = $(`<p class = "RateText">Rate : ${Recipes["categories"][2]["Salads"]["plates"][i]["Rate"]}</p>`);
       const favOne = $(
         `<button class="fav" ><img src="heart-fill.svg" alt="Favorite" /></button>`
       );
-      containerOne.append(titleOfRecipeOne, rateObe, favOne);
+      DivOfRate.append(rateOne , favOne)
+      containerOne.append(divTitleOfRecipe,DivOfRate );
+     
   }
 
   ///////////////////////////////////////////////////////////////////////////////sec tw
@@ -987,19 +1087,24 @@ const CategoryPage = () => {
       cardOne.append(imgCardOne);
       const containerOne = $(`<div class="container"></div>`);
       cardOne.append(containerOne);
+      const divTitleOfRecipe = $(`<div class = "divTitleOfRecipe"></div>`)
       const titleOfRecipeOne = $(` <h4 class="titleOfRecipe"><b>${Recipes["categories"][1]["Chicken"]["plates"][i]["title"]}</b></h4>`);
-      const rateObe = $(`<p>Rate : ${Recipes["categories"][1]["Chicken"]["plates"][i]["Rate"]}</p>`);
+      divTitleOfRecipe.append(titleOfRecipeOne)
+      const DivOfRate = $(`<div class ="RateFav"></div>`)
+      const rateOne = $(`<p class = "RateText">Rate : ${Recipes["categories"][1]["Chicken"]["plates"][i]["Rate"]}</p>`);
       const favOne = $(
         `<button class="fav" ><img src="heart-fill.svg" alt="Favorite" /></button>`
       );
-      containerOne.append(titleOfRecipeOne, rateObe, favOne);
+      DivOfRate.append(rateOne , favOne)
+      containerOne.append(divTitleOfRecipe, DivOfRate);
   }
   
 
   ////////////////////////////////////////////////
 
   $(`.fav`).on("click", function () {
-    const img = $(this).parent().parent().find("img").attr("src");
+   
+    const img = $(this).parent().parent().parent().find("img").attr("src");
     console.log(img);
     const details = $(this).parent().parent().text().split("Rate : ");
     console.log(details);
@@ -1007,27 +1112,59 @@ const CategoryPage = () => {
   });
 
   $(".titleOfRecipe").on("click", function (event) {
-    const img = $(this).parent().parent().find("img").attr("src");
+    const img = $(this).parent().parent().parent().find("img").attr("src");
     console.log(img);
     const DesOfCard = $(this).text().split(":");
     console.log(DesOfCard[0]);
     FoodRecipeDetails(DesOfCard[0], img);
   });
 
-  
+  if(flag === "Dark"){
+    body.css({backgroundColor: "#000000", color: "#ffffff" })
+    $(`.card`).css({backgroundColor: "#000000", color: "#ffffff" })
+    $('.card').find(`.fav`).find(`img`).attr( 'src','heart.svg');
+
+    $(`.fav`).css({backgroundColor: "#ffffff", })
+    $(`header`).css({backgroundColor: "#000000", })
+    flag === "Dark"
+ }
   //////////////////////////////////////////
 };
 const FoodRecipeDetails = (title, image) => {
   body.html("");
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// let a = ["Spaghetti" , "Chicken" , "Salads"]
+// for (let i = 0 ; i<a.length ; i++){
+//     console.log([i],[a[i]])
+//   for(let i = 0 ;i<Recipes["categories"][i][a[i]]["plates"].length;i++){
+//     if(Recipes["categories"][i][a[i]]["plates"]["plates"][i]["title"] === title)
+//     {
+//         console.log(Recipes["categories"][0]["Spaghetti"]["plates"][i]["Rate"])
+//     }
+//   }}
+
   const FoodRecipeDetails = $(`<div class ="DetailsFood"></div>`);
   body.append(FoodRecipeDetails);
   const TitleOfDetailsFood = $(`<div class ="TitleOfDetailsFood"> </div>`)
-  const TitleOfDetailsFoodh3 = $(`<h3 class ="TitleOfDetailsFoodh3">California Spaghetti Salad</h3>`)
+  const TitleOfDetailsFoodh3 = $(`<h3 class ="TitleOfDetailsFoodh3">${title}</h3>`)
   TitleOfDetailsFood.append(TitleOfDetailsFoodh3);
   const paraOne = $(` <div class ="paraOne">${"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia corrupti nostrum accusamus saepe"}</div>`)
 const divImgOfDetailsFood = $(`<div class = "divImgOfDetailsFood"></div>`)
-const imgOfDetailsFood = $(`<img class ="imgOfDetailsFood" src="Carbonara-2.webp" alt ="">`)
+const imgOfDetailsFood = $(`<img class ="imgOfDetailsFood" src=${image} alt =${title}>`)
 divImgOfDetailsFood.append(imgOfDetailsFood);
 const paraTwo = $(` <div class ="paraTwo">${"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia corrupti nostrum accusamus saepe"}</div>`)
 const divImgOfDetailsFoodTwo = $(`<div class = "divImgOfDetailsFood"></div>`)
