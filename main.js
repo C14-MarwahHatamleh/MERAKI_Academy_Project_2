@@ -767,32 +767,74 @@ for (let i = 0 ;i<quickDinner["categories"][0]["Suggestions"]["plates"].length ;
     favArr.push({ img: img, title: details[0], rate: details[1] });
   });
 
-  inputSearch.on("click", function () {
+ 
+
+  inputSearch.on("click" , function(){
     if (inputSearch.val() == "") {
-      console.log("the input is empty");
-    } else {
+        console.log("the input is empty");
+      } else {
+
+
+        arr = []
+        body.html("")
+const filterSearch = $(`<div class="filterSearch"></div>`);
+body.append(filterSearch);
+const h3 = $(` <div class = "SearchHeader"><h3 class ="favHeadertext">Your Search :</h3></div>`);
+const cardFav = $(`<div class ="cards"></div>`);
+filterSearch.append(h3, cardFav);
+
       const title = inputSearch.val();
       console.log(title);
-    //  let cate = ["Spaghetti", "Salads", "chicken"];
-
-    //   for (let i = 0; i < Recipes["categories"].length; i++) {
-    //     for (
-    //       let j = 0;
-    //       j < Recipes["categories"][i][cate[i]]["plates"].length;
-    //       j++
-    //     ) {
-    //       if (
-    //         Recipes["categories"][i][cate[i]]["plates"][j]["title"] === title
-    //       ) {
-    //         console.log("yes");
-    //       } else {
-    //         console.log("no");
-    //       }
+      Recipes.categories.forEach(function(x){
+   
+        for(const keys in x){
+       //     return x[keys].filter(function(ele){
+       //     console.log(ele)
+       // return (ele)
+       //     })
+           x[keys].forEach(function(ele){
+       if(((ele.title).toLowerCase()).startsWith(title.toLowerCase())){
+           arr.push(ele);
+       }
+           })
+        }
+       })
+       
+       arr.forEach(function(ele , index){
+console.log(ele)
+        const card = $(` <div class="card"></div>`);
+        cardFav.append(card);
+        const imgCard = $(
+          `<img class="imgCard" src="${ele["Image"][0]}" alt="${ele.title}">`
+        );
+        card.append(imgCard);
+        const container = $(`<div class="container"></div>`);
+        card.append(container);
+        const divTitleOfRecipe = $(`<div class = "divTitleOfRecipe"></div>`)
+        const titleOfRecipe = $(
+          `<h4 class="titleOfRecipe"><b>${ele.title}</b></h4>`
+        );
+        divTitleOfRecipe.append(titleOfRecipe)
+        const DivOfRate = $(`<div class ="RateFav"></div>`)
+        const rate = $(
+          `<p class ="RateText">Rate ${ele.Rate}</p>`
+        );
+        DivOfRate.append(rate )
         
-    //     }
-    //   }
-    }
-  });
+        container.append(divTitleOfRecipe, DivOfRate);
+      
+  
+       });
+
+      }
+  })
+
+
+ 
+ 
+
+      
+
   //   $(".fav").each(function () {
   //     $(this).click(function (e) {
   //       const img = $(this).parent().parent().find("img").attr("src");
@@ -1083,7 +1125,7 @@ const CategoryPage = () => {
      
   }
 
-  ///////////////////////////////////////////////////////////////////////////////sec tw
+  ///////////////////////////////////////////////////////////////////////////////
 
 
   const sectionThree = $(`<div class="sectionThree"></div>`);
@@ -1154,9 +1196,9 @@ const CategoryPage = () => {
        
         arr = []
         body.html("")
-const filterSearch = $(`<div class="urFavorite"></div>`);
+const filterSearch = $(`<div class="filterSearch"></div>`);
 body.append(filterSearch);
-const h3 = $(` <div class = "favHeader"><h3 class ="favHeadertext">Your Search :</h3></div>`);
+const h3 = $(` <div class = "SearchHeader"><h3 class ="favHeadertext">Your Search :</h3></div>`);
 const cardFav = $(`<div class ="cards"></div>`);
 filterSearch.append(h3, cardFav);
 
@@ -1170,7 +1212,7 @@ filterSearch.append(h3, cardFav);
        // return (ele)
        //     })
            x[keys].forEach(function(ele){
-       if((ele.title).startsWith(title)){
+       if(((ele.title).toLowerCase()).startsWith(title.toLowerCase())){
            arr.push(ele);
        }
            })

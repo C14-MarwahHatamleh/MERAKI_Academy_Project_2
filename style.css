@@ -355,7 +355,19 @@ h2{
     flex-wrap: wrap;
     margin-left: 70px;
 }
+
+.filterSearch{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-left: 70px;
+}
 .favHeader{
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.SearchHeader{
     margin-top: 10px;
     margin-bottom: 30px;
 }
