@@ -5,6 +5,7 @@ const body = $(`body`);
 body.append(header, main, footer);
 
 let favArr = [];
+let arr = [];
 let flag = "light";
 const R = {
   categories: [
@@ -219,6 +220,8 @@ const quickDinner = {
 }
 
 
+//Recipes["Spaghetti"].forEach(x => )
+
 
 const Recipes = {
   header: "Try Our Deliciously Food",
@@ -227,10 +230,11 @@ const Recipes = {
     "What to make this week, as chosen by readers!",
   ],
   imgSrc: "Portrait-of-a-cat-with-whiskers-visible.webp",
-  categories: [
-    {
-      Spaghetti: {
-        plates: [
+ 
+    categories : 
+    [{
+      Spaghetti: [
+       
           {
             title: "Beef chow mein",
             Image: ["Beef-chow-mein.webp", "Beef-chow-mein_2.webp"],
@@ -313,12 +317,12 @@ const Recipes = {
             Rate: "10/10",
           },
           
-        ],
-      },
-    },
-    {
-      Chicken: {
-        plates: [
+       
+    ],
+   
+    
+      Chicken: [
+       
           {
             title: "Crunchy chicken taco fingers",
             Image: [
@@ -413,11 +417,11 @@ const Recipes = {
             Rate: "8.4/10",
           },
         ],
-      },
-    },
-    {
-      Salads: {
-        plates: [
+      
+    
+    
+      Salads: [
+    
           {
             title: "Cornbread Salad",
             Image: ["cornbread-salad.webp"],
@@ -427,8 +431,8 @@ const Recipes = {
               "I remember the first time I heard someone talking about a southern cornbread salad, and I thought they were crazy. However, after one bite I instantly knew what all the hype was about. It’s just good, despite the fact that it might seem a little weird. Like seriously good.",
             ],
             Rate: "9/10",
-          },
-          {
+       
+          
             title: "Green Goddess Salad",
             Image: [
               "Green_Goddess_Dressing.webp",
@@ -508,12 +512,26 @@ const Recipes = {
             ],
             Rate: "8.6/10",
           },
+        
         ],
-      },
-    },
-  ],
+}],
+  
 };
 
+Recipes.categories.forEach(function(x){
+   
+ for(const keys in x){
+//     return x[keys].filter(function(ele){
+//     console.log(ele)
+// return (ele)
+//     })
+    x[keys].forEach(function(ele){
+if((ele.title).startsWith('C')){
+    arr.push(ele);
+}
+    })
+ }
+})
 const FoodRecipesPage = () => {
   const SiteTitle = $(`<div class="site-title"> </div>`);
   header.append(SiteTitle);
@@ -736,9 +754,9 @@ for (let i = 0 ;i<quickDinner["categories"][0]["Suggestions"]["plates"].length ;
 
   $(".titleOfRecipe").on("click", function (event) {
     const img = $(this).parent().parent().parent().find("img").attr("src");
-    console.log($(this).parent().parent().parent());
+   // console.log($(this).parent().parent().parent());
     const DesOfCard = $(this).text().split(":");
-    console.log(DesOfCard[0]);
+   // console.log(DesOfCard[0]);
     FoodRecipeDetails(DesOfCard[0], img);
   });
 
@@ -755,24 +773,24 @@ for (let i = 0 ;i<quickDinner["categories"][0]["Suggestions"]["plates"].length ;
     } else {
       const title = inputSearch.val();
       console.log(title);
-      let cate = ["Spaghetti", "Salads", "chicken"];
+    //  let cate = ["Spaghetti", "Salads", "chicken"];
 
-      for (let i = 0; i < Recipes["categories"].length; i++) {
-        for (
-          let j = 0;
-          j < Recipes["categories"][i][cate[i]]["plates"].length;
-          j++
-        ) {
-          if (
-            Recipes["categories"][i][cate[i]]["plates"][j]["title"] === title
-          ) {
-            console.log("yes");
-          } else {
-            console.log("no");
-          }
-          // console.log(Recipes["categories"][i][cate[i]]["plates"][j]["title"])
-        }
-      }
+    //   for (let i = 0; i < Recipes["categories"].length; i++) {
+    //     for (
+    //       let j = 0;
+    //       j < Recipes["categories"][i][cate[i]]["plates"].length;
+    //       j++
+    //     ) {
+    //       if (
+    //         Recipes["categories"][i][cate[i]]["plates"][j]["title"] === title
+    //       ) {
+    //         console.log("yes");
+    //       } else {
+    //         console.log("no");
+    //       }
+        
+    //     }
+    //   }
     }
   });
   //   $(".fav").each(function () {
@@ -1009,21 +1027,21 @@ const CategoryPage = () => {
   titleCategory.append(headerTwo);
   const cards = $(`<div class="cards"></div>`);
   sectionOne.append(cards);
-  for(let i = 0 ;i<Recipes["categories"][0]["Spaghetti"]["plates"].length;i++){
+  for(let i = 0 ;i<Recipes["categories"][0]["Spaghetti"].length;i++){
      
       const cardOne = $(`<div class="card Spaghetti"></div>`);
       cards.append(cardOne);
-      const imgCardOne = $(`<img class="imgCard" src="${Recipes["categories"][0]["Spaghetti"]["plates"][i]["Image"][0]}"alt="${Recipes["categories"][0]["Spaghetti"]["plates"][i]["title"]}">`);
+      const imgCardOne = $(`<img class="imgCard" src="${Recipes["categories"][0]["Spaghetti"][i]["Image"][0]}"alt="${Recipes["categories"][0]["Spaghetti"][i]["title"]}">`);
       cardOne.append(imgCardOne);
       const containerOne = $(`<div class="container"></div>`);
       cardOne.append(containerOne);
       const divTitleOfRecipe = $(`<div class = "divTitleOfRecipe"></div>`)
       const titleOfRecipe = $(
-        `<h4 class="titleOfRecipe"><b>${Recipes["categories"][0]["Spaghetti"]["plates"][i]["title"]}</b></h4>`
+        `<h4 class="titleOfRecipe"><b>${Recipes["categories"][0]["Spaghetti"][i]["title"]}</b></h4>`
       );
       divTitleOfRecipe.append(titleOfRecipe);
       const DivOfRate = $(`<div class ="RateFav"></div>`)
-      const rateOne = $(`<p class = "RateText">Rate : ${Recipes["categories"][0]["Spaghetti"]["plates"][i]["Rate"]}</p>`);
+      const rateOne = $(`<p class = "RateText">Rate : ${Recipes["categories"][0]["Spaghetti"][i]["Rate"]}</p>`);
       const favOne = $(
         `<button class="fav" ><img src="heart-fill.svg" alt="Favorite" /></button>`
       );
@@ -1044,19 +1062,19 @@ const CategoryPage = () => {
   titleCategoryTwo.append(header);
   const cardsTwo = $(`<div class="cards"></div>`);
   sectionTwo.append(cardsTwo);
-  for(let i = 0 ;i<Recipes["categories"][2]["Salads"]["plates"].length;i++){
+  for(let i = 0 ;i<Recipes["categories"][0]["Salads"].length;i++){
      
       const cardOne = $(`<div class="card Salads"></div>`);
       cardsTwo.append(cardOne);
-      const imgCardOne = $(`<img class="imgCard" src="${Recipes["categories"][2]["Salads"]["plates"][i]["Image"][0]}"alt="${Recipes["categories"][2]["Salads"]["plates"][i]["title"]}">`);
+      const imgCardOne = $(`<img class="imgCard" src="${Recipes["categories"][0]["Salads"][i]["Image"][0]}"alt="${Recipes["categories"][0]["Salads"][i]["title"]}">`);
       cardOne.append(imgCardOne);
       const containerOne = $(`<div class="container"></div>`);
       cardOne.append(containerOne);
       const divTitleOfRecipe = $(`<div class = "divTitleOfRecipe"></div>`)
-      const titleOfRecipeOne = $(` <h4 class="titleOfRecipe"><b>${Recipes["categories"][2]["Salads"]["plates"][i]["title"]}</b></h4>`);
+      const titleOfRecipeOne = $(` <h4 class="titleOfRecipe"><b>${Recipes["categories"][0]["Salads"][i]["title"]}</b></h4>`);
       const DivOfRate = $(`<div class ="RateFav"></div>`)
       divTitleOfRecipe.append(titleOfRecipeOne)
-      const rateOne = $(`<p class = "RateText">Rate : ${Recipes["categories"][2]["Salads"]["plates"][i]["Rate"]}</p>`);
+      const rateOne = $(`<p class = "RateText">Rate : ${Recipes["categories"][0]["Salads"][i]["Rate"]}</p>`);
       const favOne = $(
         `<button class="fav" ><img src="heart-fill.svg" alt="Favorite" /></button>`
       );
@@ -1079,19 +1097,19 @@ const CategoryPage = () => {
   const cardsthree = $(`<div class="cards"></div>`);
   sectionThree.append(cardsthree);
 
-  for(let i = 0 ;i<Recipes["categories"][1]["Chicken"]["plates"].length;i++){
+  for(let i = 0 ;i<Recipes["categories"][0]["Chicken"].length;i++){
      
       const cardOne = $(`<div class="card Chicken"></div>`);
       cardsthree.append(cardOne);
-      const imgCardOne = $(`<img class="imgCard" src="${Recipes["categories"][1]["Chicken"]["plates"][i]["Image"][0]}"alt="${Recipes["categories"][1]["Chicken"]["plates"][i]["title"]}">`);
+      const imgCardOne = $(`<img class="imgCard" src="${Recipes["categories"][0]["Chicken"][i]["Image"][0]}"alt="${Recipes["categories"][0]["Chicken"][i]["title"]}">`);
       cardOne.append(imgCardOne);
       const containerOne = $(`<div class="container"></div>`);
       cardOne.append(containerOne);
       const divTitleOfRecipe = $(`<div class = "divTitleOfRecipe"></div>`)
-      const titleOfRecipeOne = $(` <h4 class="titleOfRecipe"><b>${Recipes["categories"][1]["Chicken"]["plates"][i]["title"]}</b></h4>`);
+      const titleOfRecipeOne = $(` <h4 class="titleOfRecipe"><b>${Recipes["categories"][0]["Chicken"][i]["title"]}</b></h4>`);
       divTitleOfRecipe.append(titleOfRecipeOne)
       const DivOfRate = $(`<div class ="RateFav"></div>`)
-      const rateOne = $(`<p class = "RateText">Rate : ${Recipes["categories"][1]["Chicken"]["plates"][i]["Rate"]}</p>`);
+      const rateOne = $(`<p class = "RateText">Rate : ${Recipes["categories"][0]["Chicken"][i]["Rate"]}</p>`);
       const favOne = $(
         `<button class="fav" ><img src="heart-fill.svg" alt="Favorite" /></button>`
       );
@@ -1128,6 +1146,133 @@ const CategoryPage = () => {
     $(`header`).css({backgroundColor: "#000000", })
     flag === "Dark"
  }
+ inputSearch.on("click", function () {
+
+    if (inputSearch.val() == "") {
+      console.log("the input is empty");
+    } else {
+       
+        arr = []
+        body.html("")
+const filterSearch = $(`<div class="urFavorite"></div>`);
+body.append(filterSearch);
+const h3 = $(` <div class = "favHeader"><h3 class ="favHeadertext">Your Search :</h3></div>`);
+const cardFav = $(`<div class ="cards"></div>`);
+filterSearch.append(h3, cardFav);
+
+      const title = inputSearch.val();
+      console.log(title);
+      Recipes.categories.forEach(function(x){
+   
+        for(const keys in x){
+       //     return x[keys].filter(function(ele){
+       //     console.log(ele)
+       // return (ele)
+       //     })
+           x[keys].forEach(function(ele){
+       if((ele.title).startsWith(title)){
+           arr.push(ele);
+       }
+           })
+        }
+       })
+       
+       arr.forEach(function(ele , index){
+console.log(ele)
+        const card = $(` <div class="card"></div>`);
+        cardFav.append(card);
+        const imgCard = $(
+          `<img class="imgCard" src="${ele["Image"][0]}" alt="${ele.title}">`
+        );
+        card.append(imgCard);
+        const container = $(`<div class="container"></div>`);
+        card.append(container);
+        const divTitleOfRecipe = $(`<div class = "divTitleOfRecipe"></div>`)
+        const titleOfRecipe = $(
+          `<h4 class="titleOfRecipe"><b>${ele.title}</b></h4>`
+        );
+        divTitleOfRecipe.append(titleOfRecipe)
+        const DivOfRate = $(`<div class ="RateFav"></div>`)
+        const rate = $(
+          `<p class ="RateText">Rate ${ele.Rate}</p>`
+        );
+        DivOfRate.append(rate )
+        
+        container.append(divTitleOfRecipe, DivOfRate);
+      
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+        // const para = $(`<p>${ele.title}</p>`)
+        // div.append(para)
+       })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+    }
+  });
+
+
+
+
+
+
+
+
+
+
+ Recipes.categories.forEach(function(x){
+   
+    for(const keys in x){
+   //     return x[keys].filter(function(ele){
+   //     console.log(ele)
+   // return (ele)
+   //     })
+       x[keys].forEach(function(ele){
+   if((ele.title).startsWith('C')){
+       arr.push(ele);
+   }
+       })
+    }
+   })
+
+   
   //////////////////////////////////////////
 };
 const FoodRecipeDetails = (title, image) => {
