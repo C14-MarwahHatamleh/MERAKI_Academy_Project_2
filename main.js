@@ -475,7 +475,7 @@ const Recipes = {
         },
         {
           title: "Retro Salad",
-          Image: ["Retro Salad.webp"],
+          Image: ["RetroSalad.webp" ,"retro_salad_2.webp"],
           Description: [
             "Wedge salads are essential steakhouse fare and have been for decades – pale green-white triangles of commodity iceberg drizzled in [creamy blue cheese dressing], with crumbles of bacon and bright red pops of cherry tomato, and pricks of green chive strewn across the top. Serve a wedge and a steak, or a wedge and a hamburger, or a wedge and a roast chicken, or just a wedge and a lot of warm bread…, and it’s a pleasant evening you’re having, a retro delight. Wedge is a salad for pleasure.",
             "This Retro Wedge Salad is great with small heads of romaine—often labeled “petite” or “artisan” romaine—if you can find them in your supermarket’s produce section.",
@@ -578,9 +578,11 @@ const FoodRecipesPage = () => {
       flag = "Dark";
       body.css({ backgroundColor: "#000000", color: "#ffffff" });
       $(`.card`).css({ backgroundColor: "#000000", color: "#ffffff" });
-      $(".card").find(`.fav`).find(`img`).attr("src", "heart.svg");
+      $(".card").find(`.fav`).find(`img`).attr("src", "favorite.ico");
+      $(".header").find(`#favorite`).find(`img`).attr("src", "favorite.ico");
+      $(`header`).find(`#favorite`).css({ backgroundColor: "#000000" });
 
-      $(`.fav`).css({ backgroundColor: "#ffffff" });
+      $(`.fav`).css({ backgroundColor: "#000000" , border :"none"});
       $(`header`).css({ backgroundColor: "#000000" });
       $(`footer`).css({ backgroundColor: "#ffffff", color: "#000000" });
     } else {
@@ -596,9 +598,11 @@ const FoodRecipesPage = () => {
   switch_fav_search.append(foodSearch, switchBtn, favorite);
   const mastHead = $(`<div class="mastHead"> </div>`);
   main.append(mastHead);
+ 
   const divTitle = $(`<div> </div>`);
   const divButton = $(`<div> </div>`);
-  mastHead.append(divTitle, divButton);
+  mastHead.append( divTitle, divButton);
+
   const title = $(`<h1 class="title_mastHead">${Recipes["header"]}</h1>`);
   divTitle.append(title);
   const SeeOurCategory = $(
@@ -611,8 +615,7 @@ const FoodRecipesPage = () => {
   const paraInto = $(`<p class="makeRecipe">${Recipes["intro"][1]}</p>`);
   divIntro.append(HeaderIntro, paraInto);
 
-  const intro = $(`<div class="intro"></div>`);
-  main.append(intro);
+
   /////////////////////////////////////////////////////////////////////
   const ContainerImgs = $(`<div class="ContainerImgs"></div>`);
   main.append(ContainerImgs);
@@ -901,7 +904,7 @@ $(".titleOfRecipe").on("click", function (event) {
       if(flag === "Dark"){
         body.css({ backgroundColor: "#000000", color: "#ffffff" });
     $(`.card`).css({ backgroundColor: "#000000", color: "#ffffff" });
-    $(".card").find(`.fav`).find(`img`).attr("src", "heart.svg");
+    $(".card").find(`.fav`).find(`img`).attr("src", "favorite.ico");
       }
 
       
@@ -1042,9 +1045,9 @@ const FavoritePage = () => {
   if (flag === "Dark") {
     body.css({ backgroundColor: "#000000", color: "#ffffff" });
     $(`.card`).css({ backgroundColor: "#000000", color: "#ffffff" });
-    $(".card").find(`.fav`).find(`img`).attr("src", "heart.svg");
+    $(".card").find(`.fav`).find(`img`).attr("src", "favorite.ico");
 
-    $(`.fav`).css({ backgroundColor: "#ffffff" });
+    $(`.fav`).css({ backgroundColor: "#000000" });
     $(`header`).css({ backgroundColor: "#000000" });
   }
 };
@@ -1299,9 +1302,9 @@ const CategoryPage = () => {
   if (flag === "Dark") {
     body.css({ backgroundColor: "#000000", color: "#ffffff" });
     $(`.card`).css({ backgroundColor: "#000000", color: "#ffffff" });
-    $(".card").find(`.fav`).find(`img`).attr("src", "heart.svg");
+    $(".card").find(`.fav`).find(`img`).attr("src", "favorite.ico");
 
-    $(`.fav`).css({ backgroundColor: "#ffffff" });
+    $(`.fav`).css({ backgroundColor: "#000000" });
     $(`header`).css({ backgroundColor: "#000000" });
     flag === "Dark";
   }
@@ -1364,7 +1367,7 @@ const CategoryPage = () => {
       if(flag === "Dark"){
         body.css({ backgroundColor: "#000000", color: "#ffffff" });
     $(`.card`).css({ backgroundColor: "#000000", color: "#ffffff" });
-    $(".card").find(`.fav`).find(`img`).attr("src", "heart.svg");
+    $(".card").find(`.fav`).find(`img`).attr("src", "favorite.ico");
       }
 
       
