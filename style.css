@@ -31,10 +31,11 @@ width: 300px;
     width: 300px;
     height: 40px;
     border: 1px solid #eee;
-    border-radius: 20px;
     overflow: hidden;
   
  }
+
+
 #filter{
     width: 30px;
     height: 30px;
@@ -601,13 +602,117 @@ background-repeat:no-repeat;
 }
 
 
+body, html {
+    height: 100%;
+    margin: 0;
+    
+  }
 
+.containerLogin{
+    background-image: url('cover-image.webp');
+    display: flex;
+    background-size: 100%;
+  width: 100%;
+  height: 100%;
+ 
+    flex-direction: column;
+
+   
+    background-repeat: no-repeat;
+
+}
+
+.introLogin{
+    align-self: center;
+    color: white;
+    margin-top: 20px;
+  }
+
+.paraLogin{
+    align-self: center;
+}
+.login{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 70px;
+
+    
+}
+.labels{
+    display: flex;
+    flex-direction: column;
+    font-family: Lora, serif;
+    gap: 40px;
+    color: white;
+    font-size: 18px;
+    position: relative;
+    bottom: 40px;
+ 
+}
+.inputs{
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    gap: 40px;
+    margin-left: 10px;
+    
+}
+.email {
+height:35px;
+
+}
+.password{
+    height:35px;
+    
+}
+.otherFeatures{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    margin-top: 25px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 120px;
+}
+
+
+.LoginBtn{
+    height: 40px;
+    width: 200px;
+    font-size: 16px;
+    font-family: Lora, serif;
+    border-radius: 50px;
+    border: 1px;
+}
+#Register{
+  
+    font-size: 16px;
+    font-family: Lora, serif;
+   color: blue;
+   margin-left: 5px;
+}
+
+.paraLogin{
+    margin-top: 10px;
+    font-size: 18px;
+    font-family: Lora, serif;
+    color: white;
+    font-weight: bold;
+}
 
 
 
 @media (min-width: 320px) and (max-width: 480px) {
     body{
         width: 250vw;
+        height: 250vh;
+    }
+    .containerLogin{
+        background-size: 400%;
     }
     .TitleOfDetailsFoodh3{
         font-size: 40px;
@@ -648,6 +753,7 @@ background-repeat:no-repeat;
 
     body{
         width: 250vw;
+        height: 250vh;
     }
     .TitleOfDetailsFoodh3{
         font-size: 40px;
@@ -667,6 +773,9 @@ background-repeat:no-repeat;
         display: grid;
         grid-template-columns: repeat(2 ,600px);
         grid-template-rows: repeat(2 ,600px);    
+    }
+    .containerLogin{
+        background-size: 250%;
     }
 }
 
@@ -696,4 +805,8 @@ background-repeat:no-repeat;
     .TitleOfDetailsFoodh3{
         font-size: 40px;
     }
+    .containerLogin{
+        background-size: 250%;
+    }
 }
+

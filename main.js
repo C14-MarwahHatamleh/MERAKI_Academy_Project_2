@@ -590,6 +590,8 @@ const FoodRecipesPage = () => {
       body.css({ backgroundColor: "#ffffff", color: "#000000" });
       $(`.card`).css({ backgroundColor: "#ffffff", color: "#000000" });
       $(".card").find(`.fav`).find(`img`).attr("src", "heart-fill.svg");
+      $(".header").find(`#favorite`).find(`img`).attr("src", "heart-fill.svg");
+      $(`header`).find(`#favorite`).css({ backgroundColor: "#ffffff" });
       $(`.fav`).css({ backgroundColor: "rgb(250, 250, 250)" });
       $(`header`).css({ backgroundColor: "#ffffff" });
     }
@@ -642,6 +644,8 @@ const FoodRecipesPage = () => {
 if (ele.title === title){
     arr2.push(ele)
 }
+localStorage.setItem("ClickItem", ele.title);
+
     })
     FoodRecipeDetails(arr2);
   });
@@ -686,7 +690,9 @@ if (ele.title === title){
 if (ele.title === title){
     arr2.push(ele)
 }
+localStorage.setItem("ClickItem", ele.title);
     })
+   
     FoodRecipeDetails(arr2);
   });
 
@@ -734,9 +740,6 @@ if (ele.title === title){
     );
     DivOfRate.append(rate, fav);
     container.append(divTitleOfRecipe, DivOfRate);
-
-
-
   }
 
   
@@ -760,7 +763,9 @@ if (ele.title === title){
         //   }
         // });
      // }
+     localStorage.setItem("ClickItem", x.title);
     });
+    
     FoodRecipeDetails(arr2);
   });
 
@@ -839,6 +844,7 @@ $(".titleOfRecipe").on("click", function (event) {
         //   }
         // });
      // }
+     localStorage.setItem("ClickItem", x.title);
     });
     FoodRecipeDetails(arr2);
   });
@@ -865,6 +871,7 @@ $(".titleOfRecipe").on("click", function (event) {
       filterSearch.append(h3, cardFav);
 
       const title = inputSearch.val();
+      localStorage.setItem("SearchTitle", title);
       //console.log(title);
       Recipes.categories.forEach(function (x) {
         for (const keys in x) {
@@ -926,6 +933,8 @@ $(".titleOfRecipe").on("click", function (event) {
         //   }
         // });
      // }
+     localStorage.setItem("ClickItem", x.title);
+
     });
     FoodRecipeDetails(arr2);
   });
@@ -969,6 +978,9 @@ $(".titleOfRecipe").on("click", function (event) {
   const buttonLogin = $(
     `<button href="#profile-subscribe-popup" class="profile-login-popup"></button>`
   );
+  buttonLogin.on("click" , () =>{
+loginPage();
+  });
   footerSubscribeContainer.append(buttonLogin);
   const spanOfFooter = $(`<span>Login</span>`);
   buttonLogin.append(spanOfFooter);
@@ -1037,6 +1049,8 @@ const FavoritePage = () => {
       removeDiv.append(removeBtn);
       removeBtn.on("click", function () {
         $(this).parent().parent().parent().remove();
+        localStorage.setItem("Remove",  $(this).parent().parent().parent());
+
       });
       container.append(divTitleOfRecipe, DivOfRate, removeDiv);
     });
@@ -1284,6 +1298,8 @@ const CategoryPage = () => {
           if (ele.title.toLowerCase().startsWith(DesOfCard[0].toLowerCase())) {
             arr2.push(ele);
           }
+          localStorage.setItem("ClickItem",  ele.title);
+
         });
       }
     });
@@ -1324,6 +1340,8 @@ const CategoryPage = () => {
       filterSearch.append(h3, cardFav);
 
       const title = inputSearch.val();
+      localStorage.setItem("Title",  title);
+
      // console.log(title);
       Recipes.categories.forEach(function (x) {
         for (const keys in x) {
@@ -1510,3 +1528,36 @@ const FoodRecipeDetails = (ArrayOfObj) => {
 //                 </div>
 //             </div>
 //         </div>
+const loginPage =()=>{
+  body.html("")
+  const divlogin = $(`<div class ="containerLogin">`)
+  body.append(divlogin)
+  const intro = $(`<div class = "introLogin"><h2 id= "introLogin">Welcome!</h2></div>`)
+  const Paraintro = $(`<div class = "paraLogin"><p id= "paraLogin">Join Our community and enjoy \n Seamless access to exclusive features</p></div>`)
+
+// const bgLogin = $(`<img class = "bgLogin" src="cover-image.webp"/>`)
+ divlogin.append(intro);
+ divlogin.append(Paraintro)
+const login = $(`<div class ="login"></div>`)
+divlogin.append(login)
+const labels = $(`<div class ="labels"></div>`)
+const labelOne = $(`<label>Email :</label>`)
+const labelTwo = $(`<label> Password : </label>`)
+labels.append(labelOne ,labelTwo )
+login.append(labels)
+const inputs = $(`<div class ="inputs"></div>`)
+const inputOne = $(`<input class = "email" type= "email" placeholder="Email">`)
+const inputTwo = $(`<input  class = "password" type= "password" placeholder="Password">`)
+inputs.append(inputOne,inputTwo )
+login.append(inputs)
+const LoginButton = $(`<div><button class = "LoginBtn">Login</button></div>`)
+inputs.append(LoginButton)
+const otherFeatures = $(`<div class ="otherFeatures"></div>`)
+const para = $(`<div class="para"></div>`)
+
+otherFeatures.append(para )
+divlogin.append(otherFeatures);
+const paraLogin=$(`<p class = paraLogin>Don't have an account ?<span id= "Register"><a href=#>Sign Up</a> </span></p>`)
+para.append(paraLogin)
+
+}
