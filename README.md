@@ -7,17 +7,10 @@ MERAKI-ACADEMY
  </a>
 </p>
 
-<h3 align="center">JOB SEARCH WEBSITE
+<h3 align="center">FOOD RECIPES WEBSITE
 </h3>
 
 ---
-
-<p align="center"> An awesome Project to describe README 
-    <br> 
-<a href=''>Demo</a>
-    <br> 
-    <a href='https://www.canva.com/design/DAGngzkXVJo/8QeMPjwiWU_Wg56ePWyA5Q/edit'>Presentation</a>
-</p>
 
 ## 📝 Table of Contents
 
